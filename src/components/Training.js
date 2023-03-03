@@ -1,10 +1,12 @@
 import React, {useState} from "react";
+import { v4 as uuidv4 } from 'uuid';
+
 
 function Training() {
     const [trainings, setTrainings] = useState([
-        {id: 1, dat: '20.07.2019', passed: 5.7},
-        {id: 1, dat: '19.07.2019', passed: 14.2},
-        {id: 1, dat: '18.07.2019', passed: 3.4}
+        {id: uuidv4(), dat: '20.07.2019', passed: 5.7},
+        {id: uuidv4(), dat: '19.07.2019', passed: 14.2},
+        {id: uuidv4(), dat: '18.07.2019', passed: 3.4}
     ]);
     const [form, setForm] = useState({
         dat: "",
@@ -17,7 +19,7 @@ function Training() {
     }
     const handleSubmit = (evt) => {
          evt.preventDefault();
-         const newTraining = {id: 3, dat: form.dat, passed: form.passed};
+         const newTraining = {id: uuidv4(), dat: form.dat, passed: form.passed};
          setTrainings((prevTrainings) => [...prevTrainings, newTraining]);
          setForm({name: ""})
     };
