@@ -21,16 +21,13 @@ function Training() {
          evt.preventDefault();
          const newTraining = {id: uuidv4(), dat: form.dat, passed: form.passed};
          if (trainings.find(elem => elem.dat == newTraining.dat)) {
-            
-            let l = trainings.map(e => e.dat).indexOf(newTraining.dat);
-            console.log(l);
-            setTrainings(prevTrainings => prevTrainings.map(item => { 
-                                                            if (item.dat == newTraining.dat) {
+            setTrainings((prevTrainings) => prevTrainings.map((item) => { 
+                                                                if (item.dat == newTraining.dat) {
                                                                 item.passed = parseFloat(item.passed) + parseFloat(newTraining.passed);
+                                                               
                                                             }
                                                             return item }) );
-          //  setTrainings(prevTrainings => prevTrainings[l].passed =  prevTrainings[l].passed + newTraining.passed);
-         } else setTrainings((prevTrainings) => [...prevTrainings, newTraining]);
+             } else setTrainings((prevTrainings) => [...prevTrainings, newTraining]);
          
          setForm({dat: "",
                  passed: ""})
