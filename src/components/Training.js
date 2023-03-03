@@ -21,7 +21,8 @@ function Training() {
          evt.preventDefault();
          const newTraining = {id: uuidv4(), dat: form.dat, passed: form.passed};
          setTrainings((prevTrainings) => [...prevTrainings, newTraining]);
-         setForm({name: ""})
+         setForm({dat: "",
+                 passed: ""})
     };
 
     const hangleRemove = (training) => {
@@ -31,16 +32,19 @@ function Training() {
    return (
     <div>
         <form onSubmit={handleSubmit}>
-            <input type="text" name="dat" value={form.dat} onChange={handleFormChange} />
-            <input type="text" name="passed" value={form.passed} onChange={handleFormChange} />
-            <button>Добавить</button>
+            <div className="title">Дата (дд.мм.гггг.)    Пройдено км</div>
+                        
+            <input required className="input" type="date" name="dat" value={form.dat} onChange={handleFormChange} />
+            <input required className="input" type="text" name="passed" value={form.passed} onChange={handleFormChange} />
+            
+            <button className="spanLi">ОК</button>
         </form>
         <ul>
             {trainings.map((training) => (
                 <li key={training.id}>
-                    <span>{training.dat}</span>
-                    <span>{training.passed}</span>
-                    <button onClick={() => hangleRemove(training)}>удалить</button>
+                    <span className="spanLi">{training.dat}</span>
+                    <span className="spanLi">{training.passed}</span>
+                    <button className="spanLi" onClick={() => hangleRemove(training)}>X</button>
                 </li>
             ))}
         </ul>
